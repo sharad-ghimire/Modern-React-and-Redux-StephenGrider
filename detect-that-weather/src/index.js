@@ -21,12 +21,15 @@ class App extends React.Component {
     );
   }
   render() {
-    return (
-      <div>
-        Lattitue: {this.state.lattitue} <br />
-        Error: {this.state.error}
-      </div>
-    );
+    if (this.state.error && !this.state.lattitue) {
+      return <div>Error: {this.state.error}</div>;
+    }
+
+    if (!this.state.error && this.state.lattitue) {
+      return <div>Lattitue: {this.state.lattitue}</div>;
+    }
+
+    return <div>Loading...</div>;
   }
 }
 
