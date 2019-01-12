@@ -58,3 +58,22 @@ const ploicies = (listOfPolicies = [], action) => {
 
   return listOfPolicies;
 };
+
+const { createStore, combineReducers } = Redux; // Get those from Redux Library
+
+const ourDepartments = combineReducers({
+  accounting: accounting,
+  claimHistory: claimHistory,
+  ploicies: ploicies
+});
+const store = createStore(ourDepartments);
+
+//Create an action calling action creator and pass that action to dispatch (form reciever)
+const action = createPolicy('Alex', 20);
+store.dispatch(action);
+
+store.dispatch(createPolicy('Bob', 40));
+store.dispatch(createClaim('Alex', 120));
+store.dispatch(deletePolicy('Bob'));
+
+store.getState(); // Will get access to that big blib of information (state)
